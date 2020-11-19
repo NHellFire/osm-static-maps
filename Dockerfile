@@ -12,6 +12,8 @@ RUN \
         libatk-bridge2.0-0 \
         libgtk-3-0 \
         fonts-wqy-zenhei \
+        libdrm2 \
+        libgbm1 \
     && \
     rm -rf /var/lib/apt/lists/*
 
