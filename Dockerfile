@@ -1,3 +1,8 @@
+FROM rust:slim-buster AS oxipng
+
+RUN cargo install oxipng
+
+
 FROM node:14.15-buster
 
 RUN \
@@ -17,10 +22,7 @@ RUN \
     && \
     rm -rf /var/lib/apt/lists/*
 
-RUN \
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
-    && \
-    /root/.cargo/bin/cargo install oxipng
+COPY --from=oxipng /usr/local/cargo/bin/oxipng /usr/bin/
 
 WORKDIR /app
 EXPOSE 3000
