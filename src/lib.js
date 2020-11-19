@@ -162,7 +162,7 @@ module.exports = function(options) {
           })();
         } else {
           if (options.oxipng) {
-            const child = child_process.spawn('/root/.cargo/bin/oxipng', ['-']);
+            const child = child_process.spawn('oxipng', ['-']);
             child.stdin.on('error', function() {});
             child.stdin.write(imageBinary);
             child.stdin.end();
