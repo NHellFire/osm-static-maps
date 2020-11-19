@@ -25,7 +25,12 @@ RUN \
 COPY --from=oxipng /usr/local/cargo/bin/oxipng /usr/bin/
 
 WORKDIR /app
+
+COPY . .
+
+RUN npm install
+
 EXPOSE 3000
-CMD [ "npm", "run", "installandstartdev" ]
+ENTRYPOINT [ "npm", "start", "--" ]
 
 HEALTHCHECK CMD curl -f http://localhost:3000/health || exit 1
