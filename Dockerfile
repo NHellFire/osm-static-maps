@@ -24,9 +24,13 @@ RUN \
 
 COPY --from=oxipng /usr/local/cargo/bin/oxipng /usr/bin/
 
+RUN useradd --system --create-home --home-dir /app app
+
+USER app:app
+
 WORKDIR /app
 
-COPY . .
+COPY --chown=app:app . .
 
 RUN npm install
 
